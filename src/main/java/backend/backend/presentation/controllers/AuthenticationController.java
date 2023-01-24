@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import backend.backend.application.useCases.Authentication.LoginUseCase;
@@ -14,6 +15,7 @@ import backend.backend.presentation.contracts.Authentication.RegisterRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
+@RequestMapping("/auth")
 @RestController
 @RequiredArgsConstructor
 public class AuthenticationController {
@@ -22,7 +24,7 @@ public class AuthenticationController {
     private final LoginUseCase loginUseCase;
 
     @PostMapping("/register")
-    private ResponseEntity<?> register(@Valid @RequestBody RegisterRequest request) {
+    private ResponseEntity<AuthenticationResult> register(@Valid @RequestBody RegisterRequest request) {
 
         var tokens = this.registerUseCase.handle(new RegisterRequest(
             request.getEmail(), 
@@ -37,7 +39,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login")
-    private ResponseEntity<?> login(@Valid @RequestBody LoginRequest request) {
+    private ResponseEntity<AuthenticationResult> login(@Valid @RequestBody LoginRequest request) {
 
         var tokens = this.loginUseCase.handle(new LoginRequest(
             request.getEmail(), 

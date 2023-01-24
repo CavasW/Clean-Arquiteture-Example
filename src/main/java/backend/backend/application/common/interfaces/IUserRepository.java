@@ -1,14 +1,15 @@
 package backend.backend.application.common.interfaces;
 
-import java.util.Collection;
 import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import backend.backend.domain.entities.User;
 
-public interface IUserRepository {
+@Repository
+public interface IUserRepository extends JpaRepository<User, String> {
     
-    Optional<Collection<User>> getAll();
     Optional<User> findByEmail(String email);
-    void save(User user);
 
 }
