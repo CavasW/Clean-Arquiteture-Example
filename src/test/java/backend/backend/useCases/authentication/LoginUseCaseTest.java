@@ -20,6 +20,8 @@ import backend.backend.application.useCases.Authentication.common.Authentication
 import backend.backend.context.SpringContextTest;
 import backend.backend.domain.entities.User;
 import backend.backend.presentation.contracts.Authentication.LoginRequest;
+import backend.backend.presentation.errors.authentication.PasswordDontMatchException;
+import backend.backend.presentation.errors.authentication.UserNotFoundException;
 
 @DisplayName("Register Use Case Testing")
 @ExtendWith(MockitoExtension.class)
@@ -63,7 +65,7 @@ public class LoginUseCaseTest {
     public void testLogin() {
 
         assertThrows(
-            RuntimeException.class, 
+            UserNotFoundException.class, 
             () -> makeSut(
                 "ricardo@gmail.com", 
                 "password"
@@ -76,7 +78,7 @@ public class LoginUseCaseTest {
     @Test
     public void testPasswordMatch() {
         assertThrows(
-            RuntimeException.class, 
+            PasswordDontMatchException.class, 
             () -> makeSut(
                 "diogo@gmail.com", 
                 ""

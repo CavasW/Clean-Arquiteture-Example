@@ -1,5 +1,6 @@
 package backend.backend.config.security;
 
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,15 +16,19 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import backend.backend.application.common.interfaces.IJwtGenerator;
+import backend.backend.config.providers.JwtConfiguration;
 import backend.backend.infrastructure.providers.Authentication.JwtGenerator;
 import backend.backend.presentation.middlewares.AuthenticationMiddleware;
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
 @Configuration
+@RequiredArgsConstructor
+@EnableConfigurationProperties
 public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
+
+    private final JwtConfiguration jwtConfiguration;
 
     // Generates Password Encoder
     @Bean
@@ -34,7 +39,7 @@ public class SecurityConfig {
     // Set's up JWT Generator
     @Bean
     public IJwtGenerator jwtGenerator() {
-        return new JwtGenerator();
+        return new JwtGenerator(jwtConfiguration);
     }
 
     // Set'up the Authentication Provider
@@ -64,7 +69,8 @@ public class SecurityConfig {
                     jwtGenerator()
                 ), 
                 UsernamePasswordAuthenticationFilter.class
-            );
+            )
+            ;
 
         return http.build();
 

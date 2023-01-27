@@ -11,6 +11,7 @@ import backend.backend.application.common.interfaces.IUserRepository;
 import backend.backend.application.useCases.Authentication.common.AuthenticationResult;
 import backend.backend.domain.entities.User;
 import backend.backend.presentation.contracts.Authentication.RegisterRequest;
+import backend.backend.presentation.errors.authentication.UserAlreadyRegisteredException;
 
 @Service
 public class RegisterUserUseCase {
@@ -41,7 +42,7 @@ public class RegisterUserUseCase {
         var user = this.userRepository.findByEmail(request.getEmail());
 
         if (user.isPresent()) {
-            throw new RuntimeException("This user is already registered!");
+            throw new UserAlreadyRegisteredException();
         }
 
         // Perssiste user
