@@ -9,6 +9,8 @@ import backend.backend.application.common.interfaces.IJwtGenerator;
 import backend.backend.application.common.interfaces.IUserRepository;
 import backend.backend.application.useCases.Authentication.common.AuthenticationResult;
 import backend.backend.presentation.contracts.Authentication.LoginRequest;
+import backend.backend.presentation.errors.authentication.UserNotFoundException;
+import backend.backend.presentation.errors.authentication.PasswordDontMatchException;
 
 @Service
 public class LoginUseCase {
@@ -36,12 +38,12 @@ public class LoginUseCase {
         var userFound = this.userRepository.findByEmail(request.getEmail());
 
         if (userFound.isEmpty()) {
-            throw new RuntimeException("There isn't any user with that email");
+            throw new UserNotFoundException();
         }
 
         // verify passwords
         if (!passwordEncoder.matches(request.getPassword(), userFound.get().getPassword())) {
-            throw new RuntimeException("The Email or password are wrong!");
+            throw new PasswordDontMatchException();
         }
 
         authenticationManager.authenticate(
