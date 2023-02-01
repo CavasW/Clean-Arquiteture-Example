@@ -8,10 +8,15 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
 import backend.backend.application.common.interfaces.IJwtGenerator;
+import backend.backend.config.providers.JwtConfiguration;
 
 public class JwtGenerator implements IJwtGenerator {
 
-    private final Algorithm algorithm = Algorithm.HMAC256("slb!");
+    private final Algorithm algorithm;
+
+    public JwtGenerator(JwtConfiguration jwtConfiguration) { 
+        algorithm = Algorithm.HMAC256(jwtConfiguration.getSecret());
+    }
 
     @Override
     public String generateToken(String uuid, String email) {

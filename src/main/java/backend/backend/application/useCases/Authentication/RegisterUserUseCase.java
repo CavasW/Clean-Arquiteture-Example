@@ -1,5 +1,8 @@
 package backend.backend.application.useCases.Authentication;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -11,10 +14,11 @@ import backend.backend.application.common.interfaces.IUserRepository;
 import backend.backend.application.useCases.Authentication.common.AuthenticationResult;
 import backend.backend.domain.entities.User;
 import backend.backend.presentation.contracts.Authentication.RegisterRequest;
+import backend.backend.presentation.errors.authentication.UserAlreadyRegisteredException;
 
 @Service
 public class RegisterUserUseCase {
-    
+
     private final IUserRepository userRepository;
     private final IJwtGenerator jwtGenerator;
     private final IMailSender mailSender;
@@ -41,7 +45,7 @@ public class RegisterUserUseCase {
         var user = this.userRepository.findByEmail(request.getEmail());
 
         if (user.isPresent()) {
-            throw new RuntimeException("This user is already registered!");
+            throw new UserAlreadyRegisteredException();
         }
 
         // Perssiste user
@@ -53,11 +57,16 @@ public class RegisterUserUseCase {
                 )
             );
 
+        Map<String, Object> options =
+            new HashMap<>();
+
+        options.put("verifyLink", "");
+
         // Send Email
         mailSender.sendEmail(
             request.getEmail(),
-            "Welcome to Reiport!", 
-            null
+            "welcome",
+            options
         );
 
         authenticationManager.authenticate(

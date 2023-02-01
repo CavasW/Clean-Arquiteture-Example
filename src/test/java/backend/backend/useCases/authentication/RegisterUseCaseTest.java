@@ -18,6 +18,7 @@ import backend.backend.application.useCases.Authentication.common.Authentication
 import backend.backend.context.SpringContextTest;
 import backend.backend.domain.entities.User;
 import backend.backend.presentation.contracts.Authentication.RegisterRequest;
+import backend.backend.presentation.errors.authentication.UserAlreadyRegisteredException;
 
 @DisplayName("Register Use Case Testing")
 @ExtendWith(MockitoExtension.class)
@@ -60,7 +61,7 @@ public class RegisterUseCaseTest {
         );
 
         assertThrows(
-            RuntimeException.class, 
+            UserAlreadyRegisteredException.class, 
             () -> makeSut()
         );
 

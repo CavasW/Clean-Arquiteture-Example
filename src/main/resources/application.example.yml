@@ -1,0 +1,18 @@
+jwt:
+  secret: 
+jwt:
+  secret: 
+spring:
+  h2:
+    console:
+      enabled: 
+      path: 
+      settings.trace: 
+      settings.web-allow-others: 
+  datasource:
+    url: 
+    username: 
+    password: 
+    driverClassName: 
+  jpa:
+    spring.jpa.database-platform: 
