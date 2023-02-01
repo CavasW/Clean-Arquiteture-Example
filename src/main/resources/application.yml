@@ -1,6 +1,19 @@
 jwt:
   secret: cavascallahan
 spring:
+  thymeleaf:
+    check-template-location: false
+  mail:
+    host: smtp.mailtrap.io
+    username: 57f1cab5e78d26
+    password: 768314b65dd096
+    properties:
+      mail:
+        transport:
+          protocol: smtp
+        smtp:
+          port: 25
+          auth: true
   h2:
     console:
       enabled: true
