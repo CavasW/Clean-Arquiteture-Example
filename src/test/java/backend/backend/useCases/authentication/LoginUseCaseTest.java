@@ -23,7 +23,7 @@ import backend.backend.presentation.contracts.Authentication.LoginRequest;
 import backend.backend.presentation.errors.authentication.PasswordDontMatchException;
 import backend.backend.presentation.errors.authentication.UserNotFoundException;
 
-@DisplayName("Register Use Case Testing")
+@DisplayName("Login Use Case Testing")
 @ExtendWith(MockitoExtension.class)
 @Import(SpringContextTest.class)
 @SpringBootTest
