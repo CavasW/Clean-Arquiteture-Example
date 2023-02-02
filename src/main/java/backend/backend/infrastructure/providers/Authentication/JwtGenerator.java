@@ -1,6 +1,7 @@
 package backend.backend.infrastructure.providers.Authentication;
 
 import java.util.Date;
+import java.util.Random;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
@@ -64,6 +65,20 @@ public class JwtGenerator implements IJwtGenerator {
     @Override
     public boolean validateToken(String token) {
        return decodeToken(token) != null;
+    }
+
+    @Override
+    public String generateSimpleToken() {
+        
+        Random random = new Random();
+        StringBuffer buffer = new StringBuffer();
+
+        while(buffer.length() < 16){
+            buffer.append(Integer.toHexString(random.nextInt()));
+        }
+
+        return buffer.toString().substring(0, 16);
+        
     }
     
 }

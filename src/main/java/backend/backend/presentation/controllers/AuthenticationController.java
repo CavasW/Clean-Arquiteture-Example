@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import backend.backend.application.useCases.Authentication.ForgotPasswordUseCase;
 import backend.backend.application.useCases.Authentication.LoginUseCase;
 import backend.backend.application.useCases.Authentication.RegisterUserUseCase;
 import backend.backend.application.useCases.Authentication.common.AuthenticationResult;
+import backend.backend.presentation.contracts.Authentication.ForgotPasswordRequest;
 import backend.backend.presentation.contracts.Authentication.LoginRequest;
 import backend.backend.presentation.contracts.Authentication.RegisterRequest;
 import jakarta.validation.Valid;
@@ -22,6 +24,7 @@ public class AuthenticationController {
     
     private final RegisterUserUseCase registerUseCase;
     private final LoginUseCase loginUseCase;
+    private final ForgotPasswordUseCase forgotPasswordUseCase;
 
     @PostMapping("/register")
     private ResponseEntity<AuthenticationResult> register(@Valid @RequestBody RegisterRequest request) {
@@ -42,12 +45,24 @@ public class AuthenticationController {
     private ResponseEntity<AuthenticationResult> login(@Valid @RequestBody LoginRequest request) {
 
         var tokens = this.loginUseCase.handle(new LoginRequest(
-            request.getEmail(), 
+            request.getEmail(),
             request.getPassword()
         ));
 
         return new ResponseEntity<AuthenticationResult>(
             tokens, 
+            HttpStatusCode.valueOf(200)
+        );
+
+    }
+
+    @PostMapping("/forgotpassword")
+    private ResponseEntity<Void> forgotPassword(@Valid @RequestBody ForgotPasswordRequest request) {
+
+        this.forgotPasswordUseCase.handle(request);
+
+        return new ResponseEntity<>(
+            null,
             HttpStatusCode.valueOf(200)
         );
 
