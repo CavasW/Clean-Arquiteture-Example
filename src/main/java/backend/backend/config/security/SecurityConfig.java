@@ -50,18 +50,17 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        
+
         http
+            .httpBasic().disable()
             .csrf().disable()
-            .authorizeHttpRequests()
-            .requestMatchers("/auth/**")
-            .permitAll()
-            .anyRequest()
-            .authenticated()
-            .and()
             .authenticationProvider(authProvider())
-            .sessionManagement()
-            .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .and()
+                .authorizeHttpRequests()
+                .requestMatchers("/auth/**").permitAll()
+                .requestMatchers("/**").permitAll()
+                .anyRequest().authenticated()
             .and()
             .addFilterBefore(
                 new AuthenticationMiddleware(
