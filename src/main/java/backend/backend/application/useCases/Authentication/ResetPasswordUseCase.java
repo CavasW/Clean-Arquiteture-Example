@@ -14,8 +14,6 @@ import backend.backend.presentation.errors.authentication.PasswordsNotEqualExcep
 import backend.backend.presentation.errors.authentication.TokenNotFoundException;
 import backend.backend.presentation.errors.authentication.UserDontOwnTokenException;
 
-
-
 @Service
 public class ResetPasswordUseCase {
     
@@ -31,6 +29,7 @@ public class ResetPasswordUseCase {
         this.userRepository = userRepository;
         this.tokenRepository = tokenRepository;
         this.passwordEncoder = passwordEncoder;
+    }
     
     public void handle(ResetPasswordRequest request) {
 

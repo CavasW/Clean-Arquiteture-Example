@@ -3,6 +3,11 @@ jwt:
 jwt:
   secret: 
 spring:
+  mail:
+    host: 
+    port: 
+    username: 
+    password: 
   h2:
     console:
       enabled: 
