@@ -12,6 +12,7 @@ services:
   #   depends_on:
   #     - reiport-redis
 
+
   reiport-redis:
     container_name: reiport-redis
     image: redis/redis-stack:latest

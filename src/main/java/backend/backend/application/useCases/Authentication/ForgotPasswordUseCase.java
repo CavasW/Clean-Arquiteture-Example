@@ -12,6 +12,7 @@ import backend.backend.application.common.interfaces.IMailSender;
 import backend.backend.application.common.interfaces.repositories.ITokenRepository;
 import backend.backend.application.common.interfaces.repositories.IUserRepository;
 import backend.backend.domain.entities.Token;
+import backend.backend.application.common.interfaces.IUserRepository;
 import backend.backend.domain.entities.User;
 import backend.backend.presentation.contracts.Authentication.ForgotPasswordRequest;
 import backend.backend.presentation.errors.authentication.UserNotFoundException;
