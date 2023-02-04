@@ -5,7 +5,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import backend.backend.application.common.interfaces.IUserRepository;
+import backend.backend.application.common.interfaces.repositories.IUserRepository;
 import lombok.RequiredArgsConstructor;
 
 @Component

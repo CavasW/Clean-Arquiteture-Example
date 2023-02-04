@@ -1,4 +1,4 @@
-package backend.backend.config.providers;
+package backend.backend.config.settings;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

@@ -16,7 +16,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import backend.backend.application.common.interfaces.IJwtGenerator;
-import backend.backend.config.providers.JwtConfiguration;
+import backend.backend.config.settings.JwtConfiguration;
 import backend.backend.infrastructure.providers.Authentication.JwtGenerator;
 import backend.backend.presentation.middlewares.AuthenticationMiddleware;
 import lombok.RequiredArgsConstructor;

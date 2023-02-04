@@ -14,7 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import backend.backend.application.common.interfaces.IUserRepository;
+import backend.backend.application.common.interfaces.repositories.IUserRepository;
 import backend.backend.application.useCases.Authentication.LoginUseCase;
 import backend.backend.application.useCases.Authentication.common.AuthenticationResult;
 import backend.backend.context.SpringContextTest;

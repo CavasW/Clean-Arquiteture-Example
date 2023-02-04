@@ -6,7 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import backend.backend.application.common.interfaces.IJwtGenerator;
-import backend.backend.application.common.interfaces.IUserRepository;
+import backend.backend.application.common.interfaces.repositories.IUserRepository;
 import backend.backend.application.useCases.Authentication.common.AuthenticationResult;
 import backend.backend.presentation.contracts.Authentication.LoginRequest;
 import backend.backend.presentation.errors.authentication.UserNotFoundException;

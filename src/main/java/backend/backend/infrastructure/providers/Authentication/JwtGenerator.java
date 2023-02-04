@@ -9,7 +9,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
 import backend.backend.application.common.interfaces.IJwtGenerator;
-import backend.backend.config.providers.JwtConfiguration;
+import backend.backend.config.settings.JwtConfiguration;
 
 public class JwtGenerator implements IJwtGenerator {
 

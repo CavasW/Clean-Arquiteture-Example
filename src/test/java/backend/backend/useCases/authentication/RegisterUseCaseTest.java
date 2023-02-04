@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 
-import backend.backend.application.common.interfaces.IUserRepository;
+import backend.backend.application.common.interfaces.repositories.IUserRepository;
 import backend.backend.application.useCases.Authentication.RegisterUserUseCase;
 import backend.backend.application.useCases.Authentication.common.AuthenticationResult;
 import backend.backend.context.SpringContextTest;
