@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import backend.backend.application.common.interfaces.IJwtGenerator;
 import backend.backend.application.common.interfaces.IMailSender;
-import backend.backend.application.common.interfaces.IUserRepository;
+import backend.backend.application.common.interfaces.repositories.IUserRepository;
 import backend.backend.application.useCases.Authentication.common.AuthenticationResult;
 import backend.backend.domain.entities.User;
 import backend.backend.presentation.contracts.Authentication.RegisterRequest;
