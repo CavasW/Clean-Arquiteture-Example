@@ -1,5 +1,6 @@
-jwt:
-  secret: 
+redis:
+  host: 
+  port: 
 jwt:
   secret: 
 spring:

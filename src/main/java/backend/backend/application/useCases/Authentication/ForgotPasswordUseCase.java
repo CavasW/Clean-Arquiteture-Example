@@ -61,6 +61,7 @@ public class ForgotPasswordUseCase {
         );
 
         mailSender.sendEmail(
+            "Pedido de esquecimento de senha",
             request.getEmail(), 
             "forgotpassword", 
             options
