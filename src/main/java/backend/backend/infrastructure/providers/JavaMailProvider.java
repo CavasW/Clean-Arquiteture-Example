@@ -22,7 +22,7 @@ public class JavaMailProvider implements IMailSender {
     private SpringTemplateEngine springTemplateEngine;
 
     @Override
-    public void sendEmail(String to, String template, Map<String, Object> opts) {
+    public void sendEmail(String subject, String to, String template, Map<String, Object> opts) {
         
         MimeMessage mimeMessage = 
             javaMailSender.createMimeMessage();
@@ -41,6 +41,7 @@ public class JavaMailProvider implements IMailSender {
 
         try {
 
+            helper.setSubject(subject);
             helper.setFrom(MAIL_FROM);
             helper.setTo(to);
             helper.setText(htmlFile, true);
@@ -50,8 +51,6 @@ public class JavaMailProvider implements IMailSender {
         } catch (Exception e) {
             throw new RuntimeException("Error Sending Mail");
         }
-
-        System.out.println("Email Sent!");
         
     }
     

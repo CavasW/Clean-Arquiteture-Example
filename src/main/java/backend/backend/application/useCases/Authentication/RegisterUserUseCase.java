@@ -64,6 +64,7 @@ public class RegisterUserUseCase {
 
         // Send Email
         mailSender.sendEmail(
+            "Registro na plantaforma Reiport",
             request.getEmail(),
             "welcome",
             options
